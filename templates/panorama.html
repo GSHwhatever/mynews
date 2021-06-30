@@ -1,0 +1,24 @@
+{# 新闻详情页动态填充数据 #}
+{% extends 'navicate.html' %}
+{% load static %}
+{% block contentOther %}
+    <div>
+        {% for foo in new %}
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading" align="center">{{ foo.title }}</h4>
+                <hr>
+                <h6 class="mb-0" align="right">{{ foo.publish_data }}</h6>
+            </div>
+            <div class="" align="center">
+                <img src="/{{ MEDIA_URL }}{{ foo.pic }}" class="img-fluid" alt="{{ foo.title }}">
+            </div>
+            <div class="">
+                <div class="card-body" align="center">
+                    {{ foo.content|safe }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block script %}
+{% endblock %}

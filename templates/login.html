@@ -1,0 +1,45 @@
+{# 登录功能实现 #}
+{% extends 'navicate.html' %}
+{% load static %}
+{% block title %}登录{% endblock %}
+{% block contentOther %}
+    <div align="center">
+        <h2>Login</h2>
+        {% if message %}
+         {{ message }}
+        {% endif %}
+        <div class="form-wrapper">
+           <form method="post" action="{% url 'login:login' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              {% for field in form %}
+                   <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                     <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                   </div>
+                {% endfor %}
+              <div class="button-wrapper submit">
+                 &emsp;&emsp;&emsp;&emsp;<input type="submit" value="登录" />&emsp;&emsp;<button><a href="{% url 'login:register' %}">注册</a>
+              </div>
+           </form>
+        </div>
+    </div>
+
+{% endblock contentOther %}
+
+{#        <form action="{% url 'login:login' %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                <label for="exampleInputEmail1">用户名：</label><input type="text" name="name" required/>#}
+{#                <small id="emailHelp" class="form-text text-muted">请正确填写你的用户名</small>#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="exampleInputPassword1">密&emsp;码：</label><input type="password" name="pwd" required/>#}
+{#            </div>#}
+{#            <p>#}
+{#                &emsp;&emsp;<input type="submit" value="登录"/>&emsp;&emsp;<button><a href="{% url 'login:register' %}">注册</a>#}
+{#            </button>#}
+{#            </p>#}
+{#        </form>#}
